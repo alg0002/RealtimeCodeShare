@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
+	<script>
+		window.jQuery || document.write(unescape("%3Cscript type='text/javascript' src='Scripts/jquery-1.9.1.min.js'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript" src="Scripts/jquery.signalR-1.0.1.min.js"></script>
+	<script type="text/javascript" src="signalr/hubs"></script>
+	<script type="text/javascript">
+	<!--
+		var timer = false;
+		$(function () {
+			layoutAll();
+
+			$(window).resize(function () {
+				if (timer !== false) {
+					clearTimeout(timer);
+				}
+				timer = setTimeout(layoutAll, 200);
+			});
+
+			$("#newroomname").val("room" + Math.floor(Math.random() * 10000));
+
+			// 接続作成
+			var hub = $.connection.realtimeCodeShare;
+			// クライアント関数定義
+			hub.client.setRoomList = function (roomlist) {
+				$("#rooms > *").remove();
+				if (roomlist) {
+					for (var i = 0 ; i < roomlist.length; i++) {
+						$("#rooms").append("<li><a href='main.html?r=" + roomlist[i] + "'>" + roomlist[i] + "</a></li>");
+					}
+				} else {
+					$("#rooms").append("<li>no room.</li>");
+				}
+			};
+
+			// 接続確立
+			$.connection.hub.start().done(function () {
+				hub.server.joinIndex();
+				hub.server.getRoomList();
+			});
+
+			// 
+			$("#createroom").click(function () {
+				location.href = "main.html?r=" + $("#newroomname").val();
+			});
+			$("#newroomname").keypress(function (e) {
+				if (e.which == 13) {
+					$("#createroom").click();
+				}
+			});
+
+			// 各要素のサイズ調整
+			function layoutAll() {
+				var winhalf = $(window).width() / 2;
+				$("#titlepanel").width($(window).width());
+			}
+		});
+	//	-->
+	</script>
+	<link href="Style/default.css" rel="stylesheet" />
+	<title>RealtimeCodeShare</title>
+</head>
+<body>
+	<div id="titlepanel">
+		<h1>RealtimeCodeShare</h1>
+	</div>
+	<div id="toppanel">Room list:
+		<ul id="rooms"><li>no room.</li></ul>
+		<div>room name:<input type="text" id="newroomname"/><input type="button" id="createroom" value="create new room" /></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{790D3AFA-4067-4B74-A634-12C0BF337D40}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RemotePairPro</RootNamespace>
+    <AssemblyName>RemotePairPro</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>RemotePairPro.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>RemotePairPro.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Core.1.0.1\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Owin.1.0.1\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.1.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ace-src\ace.js" />
+    <Content Include="ace-src\ext-elastic_tabstops_lite.js" />
+    <Content Include="ace-src\ext-searchbox.js" />
+    <Content Include="ace-src\ext-spellcheck.js" />
+    <Content Include="ace-src\ext-static_highlight.js" />
+    <Content Include="ace-src\ext-textarea.js" />
+    <Content Include="ace-src\keybinding-emacs.js" />
+    <Content Include="ace-src\keybinding-vim.js" />
+    <Content Include="ace-src\mode-abap.js" />
+    <Content Include="ace-src\mode-asciidoc.js" />
+    <Content Include="ace-src\mode-c9search.js" />
+    <Content Include="ace-src\mode-clojure.js" />
+    <Content Include="ace-src\mode-coffee.js" />
+    <Content Include="ace-src\mode-coldfusion.js" />
+    <Content Include="ace-src\mode-csharp.js" />
+    <Content Include="ace-src\mode-css.js" />
+    <Content Include="ace-src\mode-curly.js" />
+    <Content Include="ace-src\mode-c_cpp.js" />
+    <Content Include="ace-src\mode-dart.js" />
+    <Content Include="ace-src\mode-diff.js" />
+    <Content Include="ace-src\mode-django.js" />
+    <Content Include="ace-src\mode-dot.js" />
+    <Content Include="ace-src\mode-ftl.js" />
+    <Content Include="ace-src\mode-glsl.js" />
+    <Content Include="ace-src\mode-golang.js" />
+    <Content Include="ace-src\mode-groovy.js" />
+    <Content Include="ace-src\mode-haml.js" />
+    <Content Include="ace-src\mode-haxe.js" />
+    <Content Include="ace-src\mode-html.js" />
+    <Content Include="ace-src\mode-jade.js" />
+    <Content Include="ace-src\mode-java.js" />
+    <Content Include="ace-src\mode-javascript.js" />
+    <Content Include="ace-src\mode-json.js" />
+    <Content Include="ace-src\mode-jsp.js" />
+    <Content Include="ace-src\mode-jsx.js" />
+    <Content Include="ace-src\mode-latex.js" />
+    <Content Include="ace-src\mode-less.js" />
+    <Content Include="ace-src\mode-liquid.js" />
+    <Content Include="ace-src\mode-lisp.js" />
+    <Content Include="ace-src\mode-livescript.js" />
+    <Content Include="ace-src\mode-logiql.js" />
+    <Content Include="ace-src\mode-lsl.js" />
+    <Content Include="ace-src\mode-lua.js" />
+    <Content Include="ace-src\mode-luapage.js" />
+    <Content Include="ace-src\mode-lucene.js" />
+    <Content Include="ace-src\mode-makefile.js" />
+    <Content Include="ace-src\mode-markdown.js" />
+    <Content Include="ace-src\mode-objectivec.js" />
+    <Content Include="ace-src\mode-ocaml.js" />
+    <Content Include="ace-src\mode-pascal.js" />
+    <Content Include="ace-src\mode-perl.js" />
+    <Content Include="ace-src\mode-pgsql.js" />
+    <Content Include="ace-src\mode-php.js" />
+    <Content Include="ace-src\mode-powershell.js" />
+    <Content Include="ace-src\mode-python.js" />
+    <Content Include="ace-src\mode-r.js" />
+    <Content Include="ace-src\mode-rdoc.js" />
+    <Content Include="ace-src\mode-rhtml.js" />
+    <Content Include="ace-src\mode-ruby.js" />
+    <Content Include="ace-src\mode-sass.js" />
+    <Content Include="ace-src\mode-scad.js" />
+    <Content Include="ace-src\mode-scala.js" />
+    <Content Include="ace-src\mode-scheme.js" />
+    <Content Include="ace-src\mode-scss.js" />
+    <Content Include="ace-src\mode-sh.js" />
+    <Content Include="ace-src\mode-sql.js" />
+    <Content Include="ace-src\mode-stylus.js" />
+    <Content Include="ace-src\mode-svg.js" />
+    <Content Include="ace-src\mode-tcl.js" />
+    <Content Include="ace-src\mode-tex.js" />
+    <Content Include="ace-src\mode-text.js" />
+    <Content Include="ace-src\mode-textile.js" />
+    <Content Include="ace-src\mode-tmsnippet.js" />
+    <Content Include="ace-src\mode-tm_snippet.js" />
+    <Content Include="ace-src\mode-toml.js" />
+    <Content Include="ace-src\mode-typescript.js" />
+    <Content Include="ace-src\mode-vbscript.js" />
+    <Content Include="ace-src\mode-xml.js" />
+    <Content Include="ace-src\mode-xquery.js" />
+    <Content Include="ace-src\mode-yaml.js" />
+    <Content Include="ace-src\theme-ambiance.js" />
+    <Content Include="ace-src\theme-chaos.js" />
+    <Content Include="ace-src\theme-chrome.js" />
+    <Content Include="ace-src\theme-clouds.js" />
+    <Content Include="ace-src\theme-clouds_midnight.js" />
+    <Content Include="ace-src\theme-cobalt.js" />
+    <Content Include="ace-src\theme-crimson_editor.js" />
+    <Content Include="ace-src\theme-dawn.js" />
+    <Content Include="ace-src\theme-dreamweaver.js" />
+    <Content Include="ace-src\theme-eclipse.js" />
+    <Content Include="ace-src\theme-github.js" />
+    <Content Include="ace-src\theme-idle_fingers.js" />
+    <Content Include="ace-src\theme-kr.js" />
+    <Content Include="ace-src\theme-merbivore.js" />
+    <Content Include="ace-src\theme-merbivore_soft.js" />
+    <Content Include="ace-src\theme-monokai.js" />
+    <Content Include="ace-src\theme-mono_industrial.js" />
+    <Content Include="ace-src\theme-pastel_on_dark.js" />
+    <Content Include="ace-src\theme-solarized_dark.js" />
+    <Content Include="ace-src\theme-solarized_light.js" />
+    <Content Include="ace-src\theme-textmate.js" />
+    <Content Include="ace-src\theme-tomorrow.js" />
+    <Content Include="ace-src\theme-tomorrow_night.js" />
+    <Content Include="ace-src\theme-tomorrow_night_blue.js" />
+    <Content Include="ace-src\theme-tomorrow_night_bright.js" />
+    <Content Include="ace-src\theme-tomorrow_night_eighties.js" />
+    <Content Include="ace-src\theme-twilight.js" />
+    <Content Include="ace-src\theme-vibrant_ink.js" />
+    <Content Include="ace-src\theme-xcode.js" />
+    <Content Include="ace-src\worker-coffee.js" />
+    <Content Include="ace-src\worker-css.js" />
+    <Content Include="ace-src\worker-javascript.js" />
+    <Content Include="ace-src\worker-json.js" />
+    <Content Include="ace-src\worker-php.js" />
+    <Content Include="ace-src\worker-xquery.js" />
+    <Content Include="index.html" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Style\default.css" />
+    <Content Include="Global.asax" />
+    <Content Include="packages.config" />
+    <Content Include="main.html" />
+    <Content Include="Scripts\jquery.signalR-1.0.1.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.1.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\RealtimeCodeShareHub.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53341/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

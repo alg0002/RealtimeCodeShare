@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="text/javascript" src="ace-src/ace.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"></script>
+	<script>
+		window.jQuery || document.write(unescape("%3Cscript type='text/javascript' src='Scripts/jquery-1.9.1.min.js'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript" src="Scripts/jquery.signalR-1.0.1.min.js"></script>
+	<script type="text/javascript" src="signalr/hubs"></script>
+	<script type="text/javascript">
+	<!--
+		var editor, roomname, username;
+		var timer = false;
+		$(function () {
+			layoutAll();
+
+			$(window).resize(function () {
+				if (timer !== false) {
+					clearTimeout(timer);
+				}
+				timer = setTimeout(layoutAll, 200);
+			});
+			
+			// GETパラメーター取得
+			var params = [], hash;
+			var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+			for (var i = 0; i < hashes.length; i++) {
+				hash = hashes[i].split('=');
+				params.push(hash[0]);
+				params[hash[0]] = hash[1];
+			}
+			roomname = params["r"];
+			if (!roomname) roomname = "default";
+			$("#room").text("[" + roomname + "]");
+			username = params["u"];
+			if (!username) username = prompt("Your name?", "");
+			if (!username) username = "anonymous";
+			$("#yourname").text(username);
+
+			// 接続作成
+			var hub = $.connection.realtimeCodeShare;
+
+			// クライアント関数定義
+			hub.client.setCode = function (code, position) {
+				editor.setValue(code, position);
+			};
+			hub.client.setMode = function (langmode) {
+				$("#langmode").val(langmode);
+				editor.getSession().setMode("ace/mode/" + langmode);
+			}
+			hub.client.setChatMsg = showChatLog;
+			hub.client.setPastMsgs = function (loglines) {
+				for (var i = 0; i < loglines.length; i++) {
+					showChatLog(loglines[i][0], loglines[i][1], loglines[i][2]);
+				}
+			}
+
+			// 接続確立
+			$.connection.hub.start().done(function () {
+				hub.server.joinRoom(roomname);
+				$("#editor").keyup(function (e) {
+					var code = editor.getValue();
+					if (code != $("#editorback").val()) {
+						var p = editor.getCursorPositionScreen();
+						hub.server.shareCode(roomname, code, p);
+						$("#editorback").val(code);
+					}
+				});
+				// イベントハンドラ
+				$("#langmode").change(function (e) {
+					editor.getSession().setMode("ace/mode/" + $(this).val());
+					hub.server.shareMode(roomname, $(this).val());
+				});
+				$("#chatsend").click(function (e) {
+					if ($("#chattext").val()) {
+						hub.server.chat(roomname, $("#chattext").val(), $("#yourname").text());
+						$("#chattext").val("");
+					}
+				});
+				$("#chattext").keypress(function (e) {
+					if (e.which == 13) {
+						$("#chatsend").click();
+					}
+				});
+			});
+
+			// 各要素のサイズ調整
+			function layoutAll() {
+				var winhalf = $(window).width() / 2;
+				$("#titlepanel").width($(window).width());
+				$("#rightpanel").css("left", winhalf + "px");
+				$("#rightpanel").height($(window).height() - $("#titlepanel").height() - 20);
+				$("#rightpanel").width(winhalf - 10);
+				$("#logpanel").height($("#rightpanel").height() - 30);
+				$("#editor").height($("#rightpanel").height() - $("#toppanel").height() - 4);
+				$("#editor").width(winhalf);
+				editor.resize(true);
+			}
+
+			// 受信したチャットログを画面に反映
+			function showChatLog(dt, name, msg) {
+				msg = msg.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+				var line = "<tr";
+				if (!$("#logtable > :eq(1) > :first").hasClass("logline-even")) {
+					line = line + " class='logline-even'"
+				}
+				line = line + "><td class='center'><div style='display:none;'>" + dt + "</div></td><td class='center'><div style='display:none;'>" + name + "</div></td><td><div style='display:none;'>" + msg + "</div></td></tr>\n"
+				$("#logtable").prepend(line);
+				$("#logtable td div").fadeIn(200);
+				if ($("#logtable > :eq(1) > *").length > 50) {
+					$("#logtable > :eq(1) > :last").remove();
+				}
+			}
+		});
+	//	-->
+	</script>
+	<link href="Style/default.css" rel="stylesheet" />
+	<title>RealtimeCodeShare</title>
+</head>
+<body>
+	<div id="titlepanel">
+		<h1>RealtimeCodeShare</h1>
+	</div>
+	<div id="toppanel">Language:
+		<select id="langmode">
+			<option value="csharp">c#</option>
+			<option value="javascript" selected="selected">javascript</option>
+			<option value="php">php</option>
+			<option value="python">python</option>
+			<option value="sql">sql</option>
+			<option value="vbscript">VB Script</option>
+		</select>
+	</div>
+	<div id="editor"></div>
+	<script>
+	<!--
+	editor = ace.edit("editor");
+	editor.getSession().setMode("ace/mode/javascript");
+	editor.focus();
+	// -->
+	</script>
+	<div id="rightpanel">
+		<input type="hidden" id="codeareaback" value="" />
+		Room:<span id="room"></span>&nbsp;
+		Name:<span id="yourname">yourname</span>
+		<input type="text" id="chattext" />
+		<input type="button" id="chatsend" value="send" />
+		<br />
+		<div id="logpanel">
+			<table id="logtable">
+				<thead>
+					<tr>
+						<th>time</th>
+						<th>name</th>
+						<th>message</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
