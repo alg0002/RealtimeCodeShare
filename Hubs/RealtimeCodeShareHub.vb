@@ -9,7 +9,7 @@ Public Class RealtimeCodeShareHub
 	Private Const IndexPageName As String = "index"
 
 	'誰も使わなくなったログ等を破棄するまでの時間
-	Private DisposeTime As TimeSpan = TimeSpan.FromMinutes(1)
+	Private DisposeTime As TimeSpan = TimeSpan.FromDays(7)	' 7日間
 
 	'roomごとのチャットログ
 	Private Shared ReadOnly logs As New ConcurrentDictionary(Of String, List(Of String()))
@@ -106,7 +106,7 @@ Public Class RealtimeCodeShareHub
 		If modes.ContainsKey(roomname) Then
 			Clients.Caller.setMode(modes(roomname))
 		Else
-			modes.TryAdd(roomname, String.Empty)
+			modes.TryAdd(roomname, "javascript")
 		End If
 		If connections.ContainsKey(roomname) Then
 			connections(roomname).Add(Context.ConnectionId, DateTime.MaxValue)

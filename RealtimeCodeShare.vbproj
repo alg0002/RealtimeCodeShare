@@ -103,6 +103,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <Content Include="ace-src\ace.js" />
     <Content Include="ace-src\ext-elastic_tabstops_lite.js" />
     <Content Include="ace-src\ext-searchbox.js" />
@@ -219,6 +220,7 @@
     <Content Include="ace-src\worker-php.js" />
     <Content Include="ace-src\worker-xquery.js" />
     <Content Include="index.html" />
+    <None Include="readme.md" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
